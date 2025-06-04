@@ -20,4 +20,15 @@ class User {
             return "Error: " . $e->getMessage();
         }
     }
+    public function getAll() {
+    global $pdo;
+
+    try {
+        $stmt = $pdo->query("SELECT * FROM users ORDER BY username ASC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        return [];
+    }
+}
+
 }

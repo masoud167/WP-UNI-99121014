@@ -13,10 +13,16 @@ switch ($action) {
         $userController = new UserController();
         $userController->register();
         break;
+    
+    case 'users':
+    $userController = new UserController();
+    $userController->list();
+    break;
 
     case 'home':
     default:
         $postController = new PostController();
         $postController->index();
         break;
+    
 }

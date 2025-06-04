@@ -31,4 +31,11 @@ class UserController {
 
         include "../views/register.php";
     }
+    public function list() {
+    $user = new User();
+    $users = $user->getAll();
+
+    include "../views/users.php";
+}
+
 }
