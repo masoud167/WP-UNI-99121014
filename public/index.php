@@ -1,13 +1,22 @@
 <?php
 // public/index.php
 
-// Load the database connection
 require_once "../config/database.php";
-
-// Load model and controller (we'll create these files soon)
 require_once "../models/Post.php";
 require_once "../controllers/PostController.php";
+require_once "../controllers/UserController.php";
 
-// Instantiate the controller
-$controller = new PostController();
-$controller->index();
+$action = $_GET['action'] ?? 'home';
+
+switch ($action) {
+    case 'register':
+        $userController = new UserController();
+        $userController->register();
+        break;
+
+    case 'home':
+    default:
+        $postController = new PostController();
+        $postController->index();
+        break;
+}
