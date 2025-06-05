@@ -8,15 +8,21 @@ class User {
         global $pdo;
 
         try {
-            // Prepare SQL
+            // Check if username or email already exists
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE username = ? OR email = ?");
+            $stmt->execute([$username, $email]);
+            $exists = $stmt->fetchColumn();
+
+            if ($exists > 0) {
+                return "Username or email is already registered.";
+            }
+
+            // Insert new user
             $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
             $stmt->execute([$username, $email, $hashedPassword]);
+
             return true;
         } catch (PDOException $e) {
-            // Handle duplicate entry error
-            if ($e->getCode() == 23000) {
-                return "Username or email already exists.";
-            }
             return "Error: " . $e->getMessage();
         }
     }
@@ -30,5 +36,6 @@ class User {
         return [];
     }
 }
+
 
 }

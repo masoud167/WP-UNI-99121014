@@ -8,6 +8,13 @@ class RankingController {
         // 1. Get all post IDs
         $posts = $pdo->query("SELECT id FROM posts ORDER BY id")->fetchAll(PDO::FETCH_COLUMN);
         $n = count($posts);
+        if ($n === 0) {
+            echo "<div style='padding:20px; background:#ffe0e0; border:1px solid red; border-radius:5px;'>
+                ⚠️ No posts found. Please generate posts before running ranking.
+                 </div>";
+        return;
+}
+
 
         // Map post IDs to index
         $postIndex = array_flip($posts);

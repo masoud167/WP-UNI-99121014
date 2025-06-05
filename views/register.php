@@ -1,25 +1,27 @@
-<!-- views/register.php -->
 <?php include "layout.php"; ?>
 
-<div class="container">
-    <h2>Student Registration</h2>
+<h2>Student Registration</h2>
 
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-    <?php if (isset($success)) echo "<p style='color:green;'>$success</p>"; ?>
+<?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
+<?php if (isset($success)) echo "<div class='alert alert-success'>$success</div>"; ?>
 
-    <form action="/FinalExam/public/index.php?action=register" method="POST">
-        <label for="username">Username:</label><br>
-        <input type="text" name="username" required><br><br>
+<form action="/FinalExam/public/index.php?action=register" method="POST" class="mb-3">
+    <div class="mb-3">
+        <label for="username">Username:</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
 
-        <label for="email">Email:</label><br>
-        <input type="email" name="email" required><br><br>
+    <div class="mb-3">
+        <label for="email">Email:</label>
+        <input type="email" name="email" class="form-control" required>
+    </div>
 
-        <label for="password">Password:</label><br>
-        <input type="password" name="password" required><br><br>
+    <div class="mb-3">
+        <label for="password">Password:</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
 
-        <button type="submit">Register</button>
-    </form>
-</div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
 
-</body>
-</html>
+</div></body></html>
